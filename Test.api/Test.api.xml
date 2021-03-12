@@ -29,6 +29,41 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Test.api.Controllers.MenuController">
+            <summary>
+             菜单控制器
+            </summary>
+        </member>
+        <member name="M:Test.api.Controllers.MenuController.GetMenu">
+            <summary>
+             获取所有菜单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Test.api.Controllers.MenuController.GetRoleMenu(CustomerManagement.ViewModel.Employee.MenuViewModel)">
+            <summary>
+             根据角色获取菜单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Test.api.Controllers.RoleController">
+            <summary>
+             角色控制器
+            </summary>
+        </member>
+        <member name="M:Test.api.Controllers.RoleController.GetAllRole">
+            <summary>
+             获取所有角色信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Test.api.Controllers.RoleController.CreateAllRole(CustomerManagement.ViewModel.Role.RoleViewModel)">
+            <summary>
+             添加角色信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="T:Test.api.Tools.EndState">
             <summary>
              结束状态
