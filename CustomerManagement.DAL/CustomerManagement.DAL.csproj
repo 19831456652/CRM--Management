@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CustomerManagement.IDAL\CustomerManagement.IDAL.csproj" />
+    <ProjectReference Include="..\CustomerManagement.Model\CustomerManagement.Model.csproj" />
+  </ItemGroup>
+
+</Project>

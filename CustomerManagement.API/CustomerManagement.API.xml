@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CustomerManagement.API</name>
+    </assembly>
+    <members>
+        <member name="T:CustomerManagement.API.Tools.JwtFactory">
+            <summary>
+             JWT
+            </summary>
+        </member>
+        <member name="M:CustomerManagement.API.Tools.JwtFactory.GetToken(System.Security.Claims.Claim[])">
+            <summary>
+            加密的 Token 值
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CustomerManagement.API.Tools.RelyDi">
+            <summary>
+             依赖注入
+            </summary>
+        </member>
+    </members>
+</doc>

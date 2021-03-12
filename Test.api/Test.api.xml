@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Test.api</name>
+    </assembly>
+    <members>
+        <member name="T:Test.api.Controllers.EmployeesController">
+            <summary>
+             员工控制器
+            </summary>
+        </member>
+        <member name="M:Test.api.Controllers.EmployeesController.Login(CustomerManagement.ViewModel.Employee.LoginViewModel)">
+            <summary>
+             登录
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Test.api.Controllers.EmployeesController.Register(CustomerManagement.ViewModel.Employee.EmployeesViewModel)">
+            <summary>
+             注册
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Test.api.Controllers.EmployeesController.GetAllUserAsync">
+            <summary>
+            获取所有用户数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Test.api.Tools.EndState">
+            <summary>
+             结束状态
+            </summary>
+        </member>
+        <member name="P:Test.api.Tools.EndState.Code">
+            <summary>
+            状态编号
+            </summary>
+        </member>
+        <member name="P:Test.api.Tools.EndState.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Test.api.Tools.EndState.ErrorMessage">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="T:Test.api.Tools.JwtFactory">
+            <summary>
+             JWT
+            </summary>
+        </member>
+        <member name="M:Test.api.Tools.JwtFactory.GetToken(System.Security.Claims.Claim[])">
+            <summary>
+            加密的 Token 值
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Test.api.Tools.RelyDi">
+            <summary>
+             依赖注入
+            </summary>
+        </member>
+    </members>
+</doc>
