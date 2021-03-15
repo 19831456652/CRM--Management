@@ -4,61 +4,60 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CustomerManagement.BLL.Menu;
-using CustomerManagement.IBLL.Menu;
-using CustomerManagement.ViewModel.Employee;
+using CustomerManagement.IBLL.Branch;
+using CustomerManagement.ViewModel.Branch;
 using Microsoft.AspNetCore.Cors;
 using Test.api.Tools;
 
 namespace Test.api.Controllers
 {
-    
     /// <summary>
-    ///  菜单控制器
+    ///  部门控制器
     /// </summary>
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     [EnableCors("any")]
-    public class MenuController : Controller
+    public class BranchController : ControllerBase
     {
+        private readonly IBranchManage _branchManage;
         /// <summary>
         ///  重写控制器
         /// </summary>
-        /// <param name="menuManagement"></param>
-        public MenuController(IMenuManage menuManagement)
+        /// <param name="branchManage"></param>
+        public BranchController(IBranchManage branchManage)
         {
-            _menuManagement = menuManagement;
+            _branchManage = branchManage;
         }
 
-        private readonly IMenuManage _menuManagement;
         /// <summary>
-        ///  获取所有菜单
+        ///  获取所有部门
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetMenu()
+        public async Task<IActionResult> GetAllBranch()
         {
             if (ModelState.IsValid)
             {
-                
-                return Ok(new EndState() {Code = 200,Data = await _menuManagement.GetAllMenu(), ErrorMessage = "获取成功"});
+                return Ok(new EndState() {Code = 200, Data = await _branchManage.GetAllBranch(), ErrorMessage = "获取成功"});
             }
+
             return Ok(new EndState() {Code = 500, ErrorMessage = "数据模型验证失败"});
         }
 
         /// <summary>
-        ///  根据角色获取菜单
+        ///  添加
         /// </summary>
+        /// <param name="model">模型</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> GetRoleMenu(MenuViewModel model)
+        public async Task<IActionResult> CreateBranch(BranchViewModel model)
         {
             if (ModelState.IsValid)
             {
-               
-                return Ok(new EndState()
-                    {Code = 200, Data = await _menuManagement.GetMenuByIdRoleTypeId(model.Id), ErrorMessage = "获取成功"});
+                await _branchManage.CrateData(model.BranchName);
+                return Ok(new EndState() {Code = 200, ErrorMessage = "添加成功"});
             }
+
             return Ok(new EndState() {Code = 500, ErrorMessage = "数据模型验证失败"});
         }
     }

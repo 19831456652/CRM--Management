@@ -13,6 +13,14 @@ namespace CustomerManagement.BLL.Employees
 {
     public class EmployeesManage:IEmployeesManage
     {
+
+        public EmployeesManage(IEmployeesService employeesService)
+        {
+            _employeesService = employeesService;
+        }
+
+        private readonly IEmployeesService _employeesService;
+
         /// <summary>
         ///  注册
         /// </summary>
@@ -33,8 +41,7 @@ namespace CustomerManagement.BLL.Employees
         public async Task Register(string theWorkNumber, string password, string uName, bool sex, int age, string phone, string email,
             string address, string image, string remarks, bool status, Guid branchId)
         {
-            using IEmployeesService userServer = new EmployeesService();
-            await userServer.CreateAsync(new Model.Employees.Employees()
+            await _employeesService.CreateAsync(new Model.Employees.Employees()
             {
                 TheWorkNumber = theWorkNumber,
                 Password = password,
@@ -60,8 +67,7 @@ namespace CustomerManagement.BLL.Employees
         /// <returns></returns>
         public bool Login(string email, string password, out Guid userId)
         {
-            using IEmployeesService userServer = new EmployeesService();
-            var use = userServer.GetAllAsync().First(s => s.Email == email && s.Password == password);
+            var use = _employeesService.GetAllAsync().First(s => s.Email == email && s.Password == password);
             if (use != null)
             {
                 userId = use.Id;

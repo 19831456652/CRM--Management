@@ -4,10 +4,40 @@
         <name>Test.api</name>
     </assembly>
     <members>
+        <member name="T:Test.api.Controllers.BranchController">
+            <summary>
+             部门控制器
+            </summary>
+        </member>
+        <member name="M:Test.api.Controllers.BranchController.#ctor(CustomerManagement.IBLL.Branch.IBranchManage)">
+            <summary>
+             重写控制器
+            </summary>
+            <param name="branchManage"></param>
+        </member>
+        <member name="M:Test.api.Controllers.BranchController.GetAllBranch">
+            <summary>
+             获取所有部门
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Test.api.Controllers.BranchController.CreateBranch(CustomerManagement.ViewModel.Branch.BranchViewModel)">
+            <summary>
+             添加
+            </summary>
+            <param name="model">模型</param>
+            <returns></returns>
+        </member>
         <member name="T:Test.api.Controllers.EmployeesController">
             <summary>
              员工控制器
             </summary>
+        </member>
+        <member name="M:Test.api.Controllers.EmployeesController.#ctor(CustomerManagement.IBLL.IEmployees.IEmployeesManage)">
+            <summary>
+            重写控制器
+            </summary>
+            <param name="employeesManage"></param>
         </member>
         <member name="M:Test.api.Controllers.EmployeesController.Login(CustomerManagement.ViewModel.Employee.LoginViewModel)">
             <summary>
@@ -29,10 +59,40 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Test.api.Controllers.EmployeesOrRoleController">
+            <summary>
+             员工角色控制器
+            </summary>
+        </member>
+        <member name="M:Test.api.Controllers.EmployeesOrRoleController.#ctor(CustomerManagement.IBLL.Role.IEmployeesOrRoleManage)">
+            <summary>
+             重写控制器
+            </summary>
+            <param name="employeesOrRole"></param>
+        </member>
+        <member name="M:Test.api.Controllers.EmployeesOrRoleController.GetAllRoleOrMenu">
+            <summary>
+             获取所有数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Test.api.Controllers.EmployeesOrRoleController.CreateData(CustomerManagement.ViewModel.Role.EmployeesOrRoleViewModel)">
+            <summary>
+             添加数据
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="T:Test.api.Controllers.MenuController">
             <summary>
              菜单控制器
             </summary>
+        </member>
+        <member name="M:Test.api.Controllers.MenuController.#ctor(CustomerManagement.IBLL.Menu.IMenuManage)">
+            <summary>
+             重写控制器
+            </summary>
+            <param name="menuManagement"></param>
         </member>
         <member name="M:Test.api.Controllers.MenuController.GetMenu">
             <summary>
@@ -51,6 +111,12 @@
              角色控制器
             </summary>
         </member>
+        <member name="M:Test.api.Controllers.RoleController.#ctor(CustomerManagement.IBLL.Role.IRoleManage)">
+            <summary>
+             重写控制器
+            </summary>
+            <param name="roleManage"></param>
+        </member>
         <member name="M:Test.api.Controllers.RoleController.GetAllRole">
             <summary>
              获取所有角色信息
@@ -60,6 +126,30 @@
         <member name="M:Test.api.Controllers.RoleController.CreateAllRole(CustomerManagement.ViewModel.Role.RoleViewModel)">
             <summary>
              添加角色信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Test.api.Controllers.RoleOrMenuController">
+            <summary>
+             角色菜单关系控制器
+            </summary>
+        </member>
+        <member name="M:Test.api.Controllers.RoleOrMenuController.#ctor(CustomerManagement.IBLL.Role.IRoleOrMenuManage)">
+            <summary>
+             重写控制器
+            </summary>
+            <param name="roleOrMenu"></param>
+        </member>
+        <member name="M:Test.api.Controllers.RoleOrMenuController.GetAllRoleOrMenu">
+            <summary>
+             获取所有数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Test.api.Controllers.RoleOrMenuController.CreateData(CustomerManagement.ViewModel.Role.RoleOrMenuViewModel)">
+            <summary>
+             添加数据
             </summary>
             <param name="model"></param>
             <returns></returns>

@@ -7,6 +7,7 @@ using CustomerManagement.DAL.Employees;
 using CustomerManagement.DTO.Menu;
 using CustomerManagement.IBLL.Menu;
 using CustomerManagement.IDAL.IEmployees;
+using CustomerManagement.Model.Employees;
 using Microsoft.EntityFrameworkCore;
 
 namespace CustomerManagement.BLL.Menu
@@ -14,16 +15,31 @@ namespace CustomerManagement.BLL.Menu
     /// <summary>
     ///  菜单功能 BLL
     /// </summary>
-    public class MenuManage:IMenuManagement
+    public class MenuManage:IMenuManage
     {
+        public  MenuManage(IMenuService menuService, IRoleOrMenuService roleOrMenu)
+        {
+            _menuService = menuService;
+            _roleOrMenuService = roleOrMenu;
+        }
+
+        /// <summary>
+        ///  角色菜单关系注入
+        /// </summary>
+        private IRoleOrMenuService _roleOrMenuService;
+        
+        /// <summary>
+        ///  菜单注入
+        /// </summary>
+        private IMenuService _menuService;
         /// <summary>
         ///  获取所有菜单
         /// </summary>
         /// <returns></returns>
         public async Task<List<MenuDto>> GetAllMenu()
         {
-            using IMenuService menu = new MenuService();
-            return await menu.GetAllAsync().Select(i => new MenuDto()
+         
+            return await _menuService.GetAllAsync().Select(i => new MenuDto()
             {
                 Id = i.Id,
                 Title = i.Title,
@@ -43,28 +59,24 @@ namespace CustomerManagement.BLL.Menu
         /// <returns></returns>
         public async Task<List<MenuDto>> GetMenuByIdRoleTypeId(Guid id)
         {
-            // 角色和员工的关系
-            using IRoleOrMenuService roleOrMenu = new RoleOrMenuService();
-            // 菜单
-            using IMenuService menuService = new MenuService();
-            // 菜单DTO模型
+            // 菜单DTO模型 Include 自动关联对应的表数据
             List<MenuDto> menu = new List<MenuDto>();
-            foreach (var roleOrMenu1 in roleOrMenu.GetAllAsync().Where(i=>i.Id == id))
+            List<RoleOrMenu> menus = _roleOrMenuService.GetAllAsync().Where(a => a.RoleId == id).Include("Menu").ToList();
+            foreach (var item in menus)
             {
-                foreach (var item in menuService.GetAllAsync().Where(i=>i.Id == roleOrMenu1.Menu.Id))
+                menu.Add(new MenuDto()
                 {
-                    menu.Add(new MenuDto()
-                    {
-                        Title = item.Title,
-                        Image = item.Image,
-                        MenuId = item.MMenuId,
-                        Name = item.Name,
-                        Path = item.Path,
-                        View = item.View,
-                        MenuState = item.MenuState
-                    });
-                }
+                    Id = item.Menu.Id,
+                    Title = item.Menu.Title,
+                    Image = item.Menu.Image,
+                    MenuId = item.Menu.MMenuId,
+                    Name = item.Menu.Name,
+                    Path = item.Menu.Path,
+                    View = item.Menu.View,
+                    MenuState = item.Menu.MenuState
+                });
             }
+            
             return menu;
         }
     }

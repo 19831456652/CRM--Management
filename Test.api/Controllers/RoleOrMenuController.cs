@@ -13,60 +13,53 @@ using Test.api.Tools;
 namespace Test.api.Controllers
 {
     /// <summary>
-    ///  角色控制器
+    ///  角色菜单关系控制器
     /// </summary>
-    [EnableCors("any")]
     [Route("api/[controller]")]
     [ApiController]
-    public class RoleController : ControllerBase
+    [EnableCors("any")]
+    public class RoleOrMenuController : ControllerBase
     {
         /// <summary>
         ///  重写控制器
         /// </summary>
-        /// <param name="roleManage"></param>
-        public RoleController(IRoleManage roleManage)
+        /// <param name="roleOrMenu"></param>
+        public RoleOrMenuController(IRoleOrMenuManage roleOrMenu)
         {
-            _roleManage = roleManage;
+            _roleOrMenu = roleOrMenu;
         }
 
-        // 创建私有的业务映射关系
-        private readonly IRoleManage _roleManage;
-
+        private readonly IRoleOrMenuManage _roleOrMenu;
 
         /// <summary>
-        ///  获取所有角色信息
+        ///  获取所有数据
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetAllRole()
+        public async Task<IActionResult> GetAllRoleOrMenu()
         {
             if (ModelState.IsValid)
             {
-                return Ok(new EndState() {Code = 200, Data = await _roleManage.GetAllRole(), ErrorMessage = "获取成功"});
+                return Ok(new EndState() {Code = 200, Data = await _roleOrMenu.GetALlRoleOrMenu(), ErrorMessage = "获取成功"});
             }
 
             return Ok(new EndState() {Code = 500, ErrorMessage = "数据模型验证失败"});
         }
 
-
         /// <summary>
-        ///  添加角色信息
+        ///  添加数据
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> CreateAllRole(RoleViewModel model)
+        public async Task<IActionResult> CreateData(RoleOrMenuViewModel model)
         {
             if (ModelState.IsValid)
             {
-                await _roleManage.CreateRole(model.RoleName, model.RoleDescribe);
-                return Ok(new EndState()
-                {
-                    Code = 200, ErrorMessage = "添加成功"
-                });
+                await _roleOrMenu.CreateData(model.RoleId, model.MenuId);
+                return Ok(new EndState() {Code = 200, ErrorMessage = "添加成功"});
             }
-
-            return Ok(new EndState() {Code = 500, ErrorMessage = "数据模型验证失败"});
+            return Ok(new EndState() { Code = 500, ErrorMessage = "数据模型验证失败" });
         }
     }
 }

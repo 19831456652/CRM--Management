@@ -11,14 +11,14 @@ namespace CustomerManagement.IBLL.Role
     /// </summary>
     public interface IRoleManage
     {
-        /// <summary>
+        /// <summary>   
         ///  获取所有角色信息
         /// </summary>
         /// <returns></returns>
         Task<List<RoleDto>> GetAllRole();
 
         /// <summary>
-        ///  添加角色
+        ///  添加角色 
         /// </summary>
         /// <param name="roleName"></param>
         /// <param name="roleDescribe"></param>

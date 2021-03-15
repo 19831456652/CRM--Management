@@ -16,14 +16,24 @@ namespace CustomerManagement.BLL.Role
     /// </summary>
     public class RoleManage:IRoleManage
     {
+
+        /// <summary>
+        ///  重写角色实现功能接口
+        /// </summary>
+        public RoleManage(IRoleService roleService)
+        {
+            _roleService = roleService;
+        }
+
+        private readonly IRoleService _roleService;
+
         /// <summary>
         ///  获取所有角色信息
         /// </summary>
         /// <returns></returns>
         public async Task<List<RoleDto>> GetAllRole()
         {
-            using IRoleService roleService = new RoleService();
-            return await roleService.GetAllAsync().Select(i => new RoleDto()
+            return await _roleService.GetAllAsync().Select(i => new RoleDto()
             {
                 Id = i.Id,
                 RoleName = i.RoleName,
@@ -39,8 +49,7 @@ namespace CustomerManagement.BLL.Role
         /// <returns></returns>
         public async Task CreateRole(string roleName, string roleDescribe)
         {
-            using IRoleService roleService = new RoleService();
-            await roleService.CreateAsync(new Model.Employees.Role()
+            await _roleService.CreateAsync(new Model.Employees.Role()
             {
                 RoleName = roleName,
                 RoleDescribe = roleDescribe

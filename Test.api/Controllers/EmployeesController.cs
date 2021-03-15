@@ -22,6 +22,17 @@ namespace Test.api.Controllers
     [EnableCors("any")]
     public class EmployeesController : Controller
     {
+        /// <summary>
+        /// 重写控制器
+        /// </summary>
+        /// <param name="employeesManage"></param>
+        public EmployeesController(IEmployeesManage employeesManage)
+        {
+            _employeesManage = employeesManage;
+        }
+
+        private readonly IEmployeesManage _employeesManage;
+
 
         /// <summary>
         ///  登录
@@ -33,8 +44,7 @@ namespace Test.api.Controllers
         {
             if (ModelState.IsValid)
             {
-                IEmployeesManage employeesManage = new EmployeesManage();
-                var emp = employeesManage.Login(model.Email, model.PassWord, out Guid empId);
+                var emp = _employeesManage.Login(model.Email, model.PassWord, out Guid empId);
                 if (emp == true)
                 {
                     return Ok(new EndState()
@@ -60,8 +70,7 @@ namespace Test.api.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(EmployeesViewModel model)
         {
-            IEmployeesManage employeesManage = new EmployeesManage();
-            await employeesManage.Register(model.TheWorkNumber, model.Password, model.Name, model.Sex, model.Age,
+            await _employeesManage.Register(model.TheWorkNumber, model.Password, model.Name, model.Sex, model.Age,
                 model.Phone, model.Email, model.Address, model.Image, model.Remarks, model.Status, model.BranchId);
             return Ok(new EndState() { Code = 200, ErrorMessage = "注册成功" });
         }
@@ -75,8 +84,7 @@ namespace Test.api.Controllers
         {
             if (ModelState.IsValid)
             {
-                IEmployeesManage employeesManage = new EmployeesManage();
-                return Ok(new EndState() { Code = 200, Data = await employeesManage.GetAllEmployees(), ErrorMessage = "获取数据成功" });
+                return Ok(new EndState() { Code = 200, Data = await _employeesManage.GetAllEmployees(), ErrorMessage = "获取数据成功" });
             }
             return Ok(new EndState() { Code = 500, ErrorMessage = "数据有误" });
         }
