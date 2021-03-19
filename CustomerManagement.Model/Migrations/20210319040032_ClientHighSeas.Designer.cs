@@ -4,109 +4,22 @@ using CustomerManagement.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CustomerManagement.Model.Migrations
 {
     [DbContext(typeof(CustomerManagementContext))]
-    partial class CustomerManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20210319040032_ClientHighSeas")]
+    partial class ClientHighSeas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("CustomerManagement.Model.Business.Business", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("BusinessMoney")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("BusinessName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("BusinessStage")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("BusinessStateGroup")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<Guid>("ClientId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ExpectedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Founder")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<bool>("IsRemove")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Principal")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Remarks")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CK_Business");
-                });
-
-            modelBuilder.Entity("CustomerManagement.Model.Business.BusinessStateGroup", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("BusinessStateGroupId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("BusinessStateGroupName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRemove")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BusinessStateGroupId");
-
-                    b.ToTable("CK_BusinessStateGroup");
-                });
 
             modelBuilder.Entity("CustomerManagement.Model.Client.Client", b =>
                 {
@@ -336,72 +249,6 @@ namespace CustomerManagement.Model.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ck_ClientTrade");
-                });
-
-            modelBuilder.Entity("CustomerManagement.Model.Contact.ContactPerson", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<Guid>("ClientId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ContactPersonName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("DecisionMaker")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Founder")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<bool>("IsRemove")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("NextcontactDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Phone")
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
-
-                    b.Property<string>("Post")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Principal")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Remarks")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<bool>("Sex")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.ToTable("CK_ContactPerson");
                 });
 
             modelBuilder.Entity("CustomerManagement.Model.Employees.Branch", b =>
@@ -636,153 +483,6 @@ namespace CustomerManagement.Model.Migrations
                     b.ToTable("CM_RoleOrMenu");
                 });
 
-            modelBuilder.Entity("CustomerManagement.Model.Products.Product", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Founder")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<bool>("IsRemove")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Principal")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<Guid>("ProductClassifyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ProductCoding")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("ProductDescription")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("ProductDetailsImage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductImage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductName")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<decimal>("ProductPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ProductQuantity")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("ProductTotal")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("ProductUnitId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("SellingPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Whetheronorofftheshelf")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductClassifyId");
-
-                    b.HasIndex("ProductUnitId");
-
-                    b.ToTable("CK_Product");
-                });
-
-            modelBuilder.Entity("CustomerManagement.Model.Products.ProductClassify", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRemove")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ProductClassifyName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CK_ProductClassify");
-                });
-
-            modelBuilder.Entity("CustomerManagement.Model.Products.ProductUnit", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRemove")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ProductUnitName")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CK_ProductUnit");
-                });
-
-            modelBuilder.Entity("CustomerManagement.Model.Business.Business", b =>
-                {
-                    b.HasOne("CustomerManagement.Model.Client.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CustomerManagement.Model.Products.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("CustomerManagement.Model.Business.BusinessStateGroup", b =>
-                {
-                    b.HasOne("CustomerManagement.Model.Business.BusinessStateGroup", "StateGroup")
-                        .WithMany()
-                        .HasForeignKey("BusinessStateGroupId");
-
-                    b.Navigation("StateGroup");
-                });
-
             modelBuilder.Entity("CustomerManagement.Model.Client.Client", b =>
                 {
                     b.HasOne("CustomerManagement.Model.Client.ClientSource", "ClientSource")
@@ -819,17 +519,6 @@ namespace CustomerManagement.Model.Migrations
                     b.Navigation("ClientSource");
 
                     b.Navigation("ClientTrade");
-                });
-
-            modelBuilder.Entity("CustomerManagement.Model.Contact.ContactPerson", b =>
-                {
-                    b.HasOne("CustomerManagement.Model.Client.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
                 });
 
             modelBuilder.Entity("CustomerManagement.Model.Employees.EmployeeOrRole", b =>
@@ -888,25 +577,6 @@ namespace CustomerManagement.Model.Migrations
                     b.Navigation("Menu");
 
                     b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("CustomerManagement.Model.Products.Product", b =>
-                {
-                    b.HasOne("CustomerManagement.Model.Products.ProductClassify", "ProductClassify")
-                        .WithMany()
-                        .HasForeignKey("ProductClassifyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CustomerManagement.Model.Products.ProductUnit", "ProductUnit")
-                        .WithMany()
-                        .HasForeignKey("ProductUnitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ProductClassify");
-
-                    b.Navigation("ProductUnit");
                 });
 #pragma warning restore 612, 618
         }

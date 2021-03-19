@@ -67,7 +67,7 @@ namespace CustomerManagement.BLL.Employees
         /// <returns></returns>
         public bool Login(string email, string password, out Guid userId)
         {
-            var use = _employeesService.GetAllAsync().First(s => s.Email == email && s.Password == password);
+            var use = _employeesService.GetAllAsync().FirstOrDefault(s => s.Email == email && s.Password == password);
             if (use != null)
             {
                 userId = use.Id;

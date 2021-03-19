@@ -4,109 +4,22 @@ using CustomerManagement.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CustomerManagement.Model.Migrations
 {
     [DbContext(typeof(CustomerManagementContext))]
-    partial class CustomerManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20210319040258_Product")]
+    partial class Product
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("CustomerManagement.Model.Business.Business", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("BusinessMoney")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("BusinessName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("BusinessStage")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("BusinessStateGroup")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<Guid>("ClientId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ExpectedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Founder")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<bool>("IsRemove")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Principal")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Remarks")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CK_Business");
-                });
-
-            modelBuilder.Entity("CustomerManagement.Model.Business.BusinessStateGroup", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("BusinessStateGroupId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("BusinessStateGroupName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRemove")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BusinessStateGroupId");
-
-                    b.ToTable("CK_BusinessStateGroup");
-                });
 
             modelBuilder.Entity("CustomerManagement.Model.Client.Client", b =>
                 {
@@ -753,34 +666,6 @@ namespace CustomerManagement.Model.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CK_ProductUnit");
-                });
-
-            modelBuilder.Entity("CustomerManagement.Model.Business.Business", b =>
-                {
-                    b.HasOne("CustomerManagement.Model.Client.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CustomerManagement.Model.Products.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("CustomerManagement.Model.Business.BusinessStateGroup", b =>
-                {
-                    b.HasOne("CustomerManagement.Model.Business.BusinessStateGroup", "StateGroup")
-                        .WithMany()
-                        .HasForeignKey("BusinessStateGroupId");
-
-                    b.Navigation("StateGroup");
                 });
 
             modelBuilder.Entity("CustomerManagement.Model.Client.Client", b =>

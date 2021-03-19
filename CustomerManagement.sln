@@ -29,17 +29,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.API", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.Model", "CustomerManagement.Model\CustomerManagement.Model.csproj", "{CAF78DD4-55E0-4B68-B334-5E7FCC6A9197}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.IDAL", "CustomerManagement.IDAL\CustomerManagement.IDAL.csproj", "{FE14231F-E739-4E98-AB3A-103FA84AFF94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.IDAL", "CustomerManagement.IDAL\CustomerManagement.IDAL.csproj", "{FE14231F-E739-4E98-AB3A-103FA84AFF94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.DAL", "CustomerManagement.DAL\CustomerManagement.DAL.csproj", "{C0EBB910-005A-464F-A22E-A8A14F0EF9B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.DAL", "CustomerManagement.DAL\CustomerManagement.DAL.csproj", "{C0EBB910-005A-464F-A22E-A8A14F0EF9B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.DTO", "CustomerManagement.DTO\CustomerManagement.DTO.csproj", "{852AB414-B993-49A0-87EE-482D7469C3A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.DTO", "CustomerManagement.DTO\CustomerManagement.DTO.csproj", "{852AB414-B993-49A0-87EE-482D7469C3A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.IBLL", "CustomerManagement.IBLL\CustomerManagement.IBLL.csproj", "{E915D52A-6DA6-484B-9C4F-B00404651902}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.IBLL", "CustomerManagement.IBLL\CustomerManagement.IBLL.csproj", "{E915D52A-6DA6-484B-9C4F-B00404651902}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.BLL", "CustomerManagement.BLL\CustomerManagement.BLL.csproj", "{FAA0E419-BE3A-4239-8C49-19DE5826185A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.BLL", "CustomerManagement.BLL\CustomerManagement.BLL.csproj", "{FAA0E419-BE3A-4239-8C49-19DE5826185A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.ViewModel", "CustomerManagement.ViewModel\CustomerManagement.ViewModel.csproj", "{59C4215D-0065-44D4-853A-D85DE3D6912E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManagement.ViewModel", "CustomerManagement.ViewModel\CustomerManagement.ViewModel.csproj", "{59C4215D-0065-44D4-853A-D85DE3D6912E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console", "Console", "{9CCE8DFA-0D88-4253-8D3E-253A3027CD6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDateTime", "TestDateTime\TestDateTime.csproj", "{3B5EE802-739D-4731-95BF-8932DD27B17B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +87,10 @@ Global
 		{59C4215D-0065-44D4-853A-D85DE3D6912E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59C4215D-0065-44D4-853A-D85DE3D6912E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59C4215D-0065-44D4-853A-D85DE3D6912E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B5EE802-739D-4731-95BF-8932DD27B17B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B5EE802-739D-4731-95BF-8932DD27B17B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B5EE802-739D-4731-95BF-8932DD27B17B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B5EE802-739D-4731-95BF-8932DD27B17B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +107,8 @@ Global
 		{E915D52A-6DA6-484B-9C4F-B00404651902} = {1488E659-C2C9-41A5-B20E-DCB460250A2F}
 		{FAA0E419-BE3A-4239-8C49-19DE5826185A} = {01CC760B-6A73-4D02-8391-39A3954A556F}
 		{59C4215D-0065-44D4-853A-D85DE3D6912E} = {75CBEED9-68BA-4004-A031-1829CAE20D24}
+		{9CCE8DFA-0D88-4253-8D3E-253A3027CD6E} = {9B251B5C-C906-48BF-B6BA-1EAE245019F3}
+		{3B5EE802-739D-4731-95BF-8932DD27B17B} = {9CCE8DFA-0D88-4253-8D3E-253A3027CD6E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8FE9B15E-7D74-4315-A67D-7215D7F485D0}

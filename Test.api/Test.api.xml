@@ -154,6 +154,41 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="T:Test.api.Enum.ClientLevelEnum">
+            <summary>
+             客户级别 枚举
+            </summary>
+        </member>
+        <member name="F:Test.api.Enum.ClientLevelEnum.A重点客户">
+            <summary>
+             重点客户
+            </summary>
+        </member>
+        <member name="F:Test.api.Enum.ClientLevelEnum.B普通客户">
+            <summary>
+             B普通客户
+            </summary>
+        </member>
+        <member name="F:Test.api.Enum.ClientLevelEnum.C非优先客户">
+            <summary>
+             C非优先客户
+            </summary>
+        </member>
+        <member name="T:Test.api.Enum.ClientStateEnum">
+            <summary>
+             客户状态 枚举
+            </summary>
+        </member>
+        <member name="F:Test.api.Enum.ClientStateEnum.未成交">
+            <summary>
+             未成交
+            </summary>
+        </member>
+        <member name="F:Test.api.Enum.ClientStateEnum.已成交">
+            <summary>
+             已成交
+            </summary>
+        </member>
         <member name="T:Test.api.Tools.EndState">
             <summary>
              结束状态

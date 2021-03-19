@@ -56,10 +56,9 @@ namespace Test.api.Controllers
                         }),ErrorMessage = "登录成功"
                     });
                 }
-
-                return Ok(new EndState(){Code = 500,ErrorMessage = "校验未通过" });
+                return Ok(new EndState() { Code = 500, ErrorMessage = "账号密码错误" });
             }
-            return Ok(new EndState() {Code = 500, ErrorMessage = "账号密码错误"});
+            return Ok(new EndState() { Code = 500, ErrorMessage = "校验未通过" });
         }
 
         /// <summary>
