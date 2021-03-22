@@ -16,24 +16,14 @@ namespace CustomerManagement.BLL.Role
     /// </summary>
     public class RoleManage:IRoleManage
     {
-
-        /// <summary>
-        ///  重写角色实现功能接口
-        /// </summary>
-        public RoleManage(IRoleService roleService)
-        {
-            _roleService = roleService;
-        }
-
-        private readonly IRoleService _roleService;
-
         /// <summary>
         ///  获取所有角色信息
         /// </summary>
         /// <returns></returns>
         public async Task<List<RoleDto>> GetAllRole()
         {
-            return await _roleService.GetAllAsync().Select(i => new RoleDto()
+            using IRoleService roleService = new RoleService();
+            return await roleService.GetAllAsync().Select(i => new RoleDto()
             {
                 Id = i.Id,
                 RoleName = i.RoleName,
@@ -49,11 +39,56 @@ namespace CustomerManagement.BLL.Role
         /// <returns></returns>
         public async Task CreateRole(string roleName, string roleDescribe)
         {
-            await _roleService.CreateAsync(new Model.Employees.Role()
+            using IRoleService roleService = new RoleService();
+            await roleService.CreateAsync(new Model.Employees.Role()
             {
                 RoleName = roleName,
                 RoleDescribe = roleDescribe
             });
+        }
+
+        /// <summary>
+        ///  修改
+        /// </summary>
+        /// <param name="id">角色编号</param>
+        /// <param name="roleName">角色名称</param>
+        /// <param name="roleDescribe">角色描述</param>
+        /// <returns></returns>
+        public async Task EditRole(Guid id, string roleName, string roleDescribe)
+        {
+            using IRoleService roleService = new RoleService();
+            if (await roleService.GetAllAsync().AnyAsync(i => i.Id == id))
+            {
+                var role = roleService.GetAllAsync().FirstOrDefault(i => i.Id == id);
+                if (role != null)
+                {
+                    role.RoleName = roleName;
+                    role.RoleDescribe = roleDescribe;
+                }
+                await roleService.EditAsync(role);
+            }
+            
+           
+        }
+
+
+        /// <summary>
+        ///  删除
+        /// </summary>
+        /// <param name="id">角色编号</param>
+        /// <returns></returns>
+        public async Task RemoveRole(Guid id)
+        {
+            using IRoleService roleService = new RoleService();
+            if (await roleService.GetAllAsync().AnyAsync(i=>i.Id == id))
+            {
+                var role = roleService.GetAllAsync().FirstOrDefault(i => i.Id == id);
+                if (role != null)
+                {
+                    await roleService.RemoveAsync(id);
+                }
+            }
+            
         }
     }
 }

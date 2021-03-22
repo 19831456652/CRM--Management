@@ -9,7 +9,7 @@ namespace CustomerManagement.ViewModel.Role
     /// </summary>
     public class EmployeesOrRoleViewModel
     {
-        public Guid EmployeesId { get; set; }
+        public Guid UserId { get; set; }
         public Guid RoleId { get; set; }
     }
 }

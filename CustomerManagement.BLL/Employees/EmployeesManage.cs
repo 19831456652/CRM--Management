@@ -8,18 +8,12 @@ using CustomerManagement.DTO.Employees;
 using CustomerManagement.IBLL.IEmployees;
 using CustomerManagement.IDAL.IEmployees;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 
 namespace CustomerManagement.BLL.Employees
 {
     public class EmployeesManage:IEmployeesManage
     {
-
-        public EmployeesManage(IEmployeesService employeesService)
-        {
-            _employeesService = employeesService;
-        }
-
-        private readonly IEmployeesService _employeesService;
 
         /// <summary>
         ///  注册
@@ -41,7 +35,8 @@ namespace CustomerManagement.BLL.Employees
         public async Task Register(string theWorkNumber, string password, string uName, bool sex, int age, string phone, string email,
             string address, string image, string remarks, bool status, Guid branchId)
         {
-            await _employeesService.CreateAsync(new Model.Employees.Employees()
+            using IEmployeesService employeesService = new EmployeesService();
+            await employeesService.CreateAsync(new Model.Employees.Employees()
             {
                 TheWorkNumber = theWorkNumber,
                 Password = password,
@@ -67,7 +62,8 @@ namespace CustomerManagement.BLL.Employees
         /// <returns></returns>
         public bool Login(string email, string password, out Guid userId)
         {
-            var use = _employeesService.GetAllAsync().FirstOrDefault(s => s.Email == email && s.Password == password);
+            using IEmployeesService employeesService = new EmployeesService();
+            var use = employeesService.GetAllAsync().FirstOrDefault(s => s.Email == email && s.Password == password);
             if (use != null)
             {
                 userId = use.Id;
@@ -86,9 +82,10 @@ namespace CustomerManagement.BLL.Employees
         /// <returns></returns>
         public async Task<List<EmployeesDto>> GetAllEmployees()
         {
-            using IEmployeesService userServer = new EmployeesService();
-            return await userServer.GetAllAsync().Select(i => new EmployeesDto()
+            using IEmployeesService employeesService = new EmployeesService();
+            return await employeesService.GetAllAsync().Select(i => new EmployeesDto()
             {
+                Id = i.Id,
                 TheWorkNumber = i.TheWorkNumber,
                 Password = i.Password,
                 UName = i.Name,
@@ -103,6 +100,68 @@ namespace CustomerManagement.BLL.Employees
                 BranchId = i.BranchId,
             }).ToListAsync();
 
+        }
+
+        /// <summary>
+        ///  修改
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="password">密码</param>
+        /// <param name="uName">名称</param>
+        /// <param name="sex">性别</param>
+        /// <param name="age">年龄</param>
+        /// <param name="phone">手机号</param>
+        /// <param name="email">邮箱</param>
+        /// <param name="address">地址</param>
+        /// <param name="image">头像</param>
+        /// <param name="remarks">备注</param>
+        /// <param name="status">状态</param>
+        /// <param name="branchId">部门</param>
+        /// <returns></returns>
+        public async Task EditEmp(Guid id, string password, string uName, bool sex, int age, string phone, string email, string address,
+            string image, string remarks, bool status, Guid branchId)
+        {
+
+            using IEmployeesService employeesService = new EmployeesService();
+            if (await employeesService.GetAllAsync().AnyAsync(i => i.Id == id))
+            {
+                var emp = employeesService.GetAllAsync().FirstOrDefault(i => i.Id == id);
+                if (emp != null)
+                {
+                    emp.Password = password;
+                    emp.Name = uName;
+                    emp.Sex = sex;
+                    emp.Age = age;
+                    emp.Phone = phone;
+                    emp.Email = email;
+                    emp.Address = address;
+                    emp.Image = image;
+                    emp.Remarks = remarks;
+                    emp.Status = status;
+                    emp.BranchId = branchId;
+                }
+                await employeesService.EditAsync(emp);
+            }
+            
+            
+        }
+
+        /// <summary>
+        ///  删除
+        /// </summary>
+        /// <param name="id">员工id</param>
+        /// <returns></returns>
+        public async Task RemoveEmp(Guid id)
+        {
+            using IEmployeesService employeesService = new EmployeesService();
+            if (await employeesService.GetAllAsync().AnyAsync(i=>i.Id == id))
+            {
+                var emp = employeesService.GetAllAsync().FirstOrDefault(i => i.Id == id);
+                if (emp != null)
+                {
+                    await employeesService.RemoveAsync(id);
+                }
+            }
         }
     }
 }

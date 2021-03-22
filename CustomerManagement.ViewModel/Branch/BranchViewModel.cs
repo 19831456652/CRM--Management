@@ -10,7 +10,6 @@ namespace CustomerManagement.ViewModel.Branch
     /// </summary>
     public class BranchViewModel
     {
-
         /// <summary>
         ///  部门名称
         /// </summary>

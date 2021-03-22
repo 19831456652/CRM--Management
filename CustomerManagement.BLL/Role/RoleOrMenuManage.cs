@@ -14,12 +14,6 @@ namespace CustomerManagement.BLL.Role
 {
     public class RoleOrMenuManage:IRoleOrMenuManage
     {
-        public RoleOrMenuManage(IRoleOrMenuService roleOrMenu)
-        {
-            _roleOrMenu = roleOrMenu;
-        }
-
-        private readonly IRoleOrMenuService _roleOrMenu;
 
         /// <summary>
         ///  获取所有数据
@@ -27,7 +21,8 @@ namespace CustomerManagement.BLL.Role
         /// <returns></returns>
         public async Task<List<RoleOrMenuDto>> GetALlRoleOrMenu()
         {
-            return await _roleOrMenu.GetAllAsync().Select(i => new RoleOrMenuDto()
+            using RoleOrMenuService roleOrMenuService = new RoleOrMenuService();
+            return await roleOrMenuService.GetAllAsync().Select(i => new RoleOrMenuDto()
             {
                 Id = i.Id,
                 RoleId = i.RoleId,
@@ -43,11 +38,54 @@ namespace CustomerManagement.BLL.Role
         /// <returns></returns>
         public async Task CreateData(Guid roleId, Guid menuId)
         {
-            await _roleOrMenu.CreateAsync(new RoleOrMenu()
+            using RoleOrMenuService roleOrMenuService = new RoleOrMenuService();
+            await roleOrMenuService.CreateAsync(new RoleOrMenu()
             {
                 RoleId = roleId,
                 MenuId = menuId,
             });
+        }
+
+        /// <summary>
+        ///  修改
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="roleId"></param>
+        /// <param name="menuId"></param>
+        /// <returns></returns>
+        public async Task EditRoleOrMenu(Guid id, Guid roleId, Guid menuId)
+        {
+            using RoleOrMenuService roleOrMenuService = new RoleOrMenuService();
+            if (await roleOrMenuService.GetAllAsync().AnyAsync(i => i.Id == id))
+            {
+                var roleOrMenu = roleOrMenuService.GetAllAsync().FirstOrDefault(i => i.Id == id);
+                if (roleOrMenu != null)
+                {
+                    roleOrMenu.RoleId = roleId;
+                    roleOrMenu.MenuId = menuId;
+                }
+                await roleOrMenuService.EditAsync(roleOrMenu);
+            }
+            
+        }
+
+        /// <summary>
+        ///  删除z
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task RemoveRoleOrMenu(Guid id)
+        {
+            using RoleOrMenuService roleOrMenuService = new RoleOrMenuService();
+            if (await roleOrMenuService.GetAllAsync().AnyAsync(i=>i.Id == id))
+            {
+                var roleOrMenu = roleOrMenuService.GetAllAsync().FirstOrDefault(i => i.Id == id);
+
+                if (roleOrMenu != null)
+                {
+                    await roleOrMenuService.RemoveAsync(id);
+                }
+            }
         }
     }
 }

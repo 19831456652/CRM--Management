@@ -15,6 +15,10 @@ namespace Test.api.Tools
         /// </summary>
         public int Code { get; set; } = 200;
         /// <summary>
+        /// 操作是否成功
+        /// </summary>
+        public bool IsSucceed { get; set; }
+        /// <summary>
         /// 数据
         /// </summary>
         public object Data { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using CustomerManagement.Model;
 
 namespace CustomerManagement.IDAL
 {
@@ -8,7 +9,7 @@ namespace CustomerManagement.IDAL
     ///  功能接口
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IBaseService<T>:IDisposable
+    public interface IBaseService<T>: IDisposable where T:BaseEntity
     {
         /// <summary>
         ///  添加
@@ -26,13 +27,6 @@ namespace CustomerManagement.IDAL
         /// <returns></returns>
         Task EditAsync(T model, bool saved = true);
 
-        /// <summary>
-        ///  删除
-        /// </summary>
-        /// <param name="model"></param>
-        /// <param name="saved"></param>
-        /// <returns></returns>
-        Task RemoveAsync(T model, bool saved = true);
 
         /// <summary>
         ///  根据id删除
@@ -41,6 +35,15 @@ namespace CustomerManagement.IDAL
         /// <param name="saved"></param>
         /// <returns></returns>
         Task RemoveAsync(Guid id, bool saved = true);
+
+        /// <summary>
+        ///  删除
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="saved"></param>
+        /// <returns></returns>
+        Task RemoveAsync(T model, bool saved = true);
+
 
         /// <summary>
         ///  保存
@@ -63,6 +66,8 @@ namespace CustomerManagement.IDAL
         /// </summary>
         /// <returns></returns>
         IQueryable<T> GetAllAsync();
+
+        // IQueryable<T> GetAll();
 
         /// <summary>
         ///  获取数据并分页

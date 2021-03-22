@@ -10,6 +10,8 @@ namespace CustomerManagement.DTO.Employees
     /// </summary>
     public class EmployeesDto
     {
+        public Guid Id { get; set; }
+
         /// <summary>
         ///  工号
         /// </summary>

@@ -10,7 +10,6 @@ namespace CustomerManagement.ViewModel.Employee
     /// </summary>
     public class EmployeesViewModel
     {
-
         /// <summary>
         ///  工号
         /// </summary>

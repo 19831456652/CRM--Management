@@ -43,10 +43,10 @@ namespace Test.api.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Ok(new EndState() { Code = 200, Data = await _employeesManage.GetAllEmployeesOrRole(), ErrorMessage = "获取成功" });
+                return Ok(new EndState() { Code = 200, IsSucceed = true, Data = await _employeesManage.GetAllEmployeesOrRole(), ErrorMessage = "获取成功" });
             }
 
-            return Ok(new EndState() { Code = 500, ErrorMessage = "数据模型验证失败" });
+            return Ok(new EndState() { Code = 500, IsSucceed = false, ErrorMessage = "数据模型验证失败" });
         }
 
         /// <summary>
@@ -59,10 +59,43 @@ namespace Test.api.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _employeesManage.CrateData(model.EmployeesId,model.RoleId);
-                return Ok(new EndState() { Code = 200, ErrorMessage = "添加成功" });
+                await _employeesManage.CrateData(model.UserId,model.RoleId);
+                return Ok(new EndState() { Code = 200, IsSucceed = true, ErrorMessage = "添加成功" });
             }
-            return Ok(new EndState() { Code = 500, ErrorMessage = "数据模型验证失败" });
+            return Ok(new EndState() { Code = 500, IsSucceed = false, ErrorMessage = "数据模型验证失败" });
+        }
+
+        /// <summary>
+        ///  修改员工角色信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public async Task<IActionResult> EditEmpOrRole(Guid id,EmployeesOrRoleViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                await _employeesManage.EditEmpOrRole(id, model.UserId, model.RoleId);
+                return Ok(new EndState() { Code = 200,IsSucceed = true,ErrorMessage = "修改成功" });
+            }
+            return Ok(new EndState() { Code = 500,IsSucceed = false,ErrorMessage = "数据模型验证失败" });
+        }
+
+        /// <summary>
+        ///  删除员工角色信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public async Task<IActionResult> RemoveEmpOrRole(Guid id)
+        {
+            if (ModelState.IsValid)
+            {
+                await _employeesManage.RemoveRmpOrRole(id);
+                return Ok(new EndState() { Code = 200, IsSucceed = true, ErrorMessage = "删除成功" });
+            }
+            return Ok(new EndState() { Code = 500, IsSucceed = false, ErrorMessage = "数据模型验证失败" });
         }
     }
 }

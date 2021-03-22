@@ -24,5 +24,22 @@ namespace CustomerManagement.IBLL.Role
         /// <param name="menuId"></param>
         /// <returns></returns>
         Task CreateData(Guid roleId, Guid menuId);
+
+        /// <summary>
+        ///  修改角色菜单数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="roleId"></param>
+        /// <param name="menuId"></param>
+        /// <returns></returns>
+        Task EditRoleOrMenu(Guid id, Guid roleId, Guid menuId);
+
+        /// <summary>
+        ///  删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task RemoveRoleOrMenu(Guid id);
+
     }
 }

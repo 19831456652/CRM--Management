@@ -13,9 +13,6 @@ namespace CustomerManagement.DAL.Employees
     /// </summary>
     public class BranchService:BaseService<Branch>,IBranchService
     {
-        public BranchService() : base(new CustomerManagementContext())
-        {
-
-        }
+        public BranchService():base(new CustomerManagementContext()){}
     }
 }

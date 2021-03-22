@@ -15,10 +15,10 @@ namespace CustomerManagement.Model
     {
         public CustomerManagementContext()
         {
-
+        
         }
 
-        public CustomerManagementContext(DbContextOptions<CustomerManagementContext> options) : base(options)
+        public CustomerManagementContext(DbContextOptions options) : base(options)
         {
 
         }

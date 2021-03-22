@@ -10,6 +10,11 @@ namespace CustomerManagement.DTO.Branch
     public class BranchDto
     {
         /// <summary>
+        ///  部门编号
+        /// </summary>
+        public Guid BranchId { get; set; }
+
+        /// <summary>
         ///  部门名称
         /// </summary>
         public string BranchName { get; set; }

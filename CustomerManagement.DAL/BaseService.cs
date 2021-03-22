@@ -17,12 +17,6 @@ namespace CustomerManagement.DAL
             _managementContext = customerManagementContext;
         }
 
-
-        public void Dispose()
-        {
-            _managementContext.Dispose();
-        }
-
         /// <summary>
         ///  添加
         /// </summary>
@@ -54,16 +48,7 @@ namespace CustomerManagement.DAL
             }
         }
         
-        /// <summary>
-        ///  删除
-        /// </summary>
-        /// <param name="model"></param>
-        /// <param name="saved"></param>
-        /// <returns></returns>
-        public async Task RemoveAsync(T model, bool saved = true)
-        {
-            await RemoveAsync(model.Id);
-        }
+        
 
         /// <summary>
         ///  根据 id 删除
@@ -80,6 +65,16 @@ namespace CustomerManagement.DAL
             {
                 await _managementContext.SaveChangesAsync();
             }
+        }
+        /// <summary>
+        ///  删除
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="saved"></param>
+        /// <returns></returns>
+        public async Task RemoveAsync(T model, bool saved = true)
+        {
+            await RemoveAsync(model.Id, saved);
         }
 
         /// <summary>
@@ -107,8 +102,13 @@ namespace CustomerManagement.DAL
         /// <returns></returns>
         public IQueryable<T> GetAllAsync()
         {
-            return _managementContext.Set<T>().AsNoTracking().Where(i => i.IsRemove == false);
+            return _managementContext.Set<T>().Where(i => !i.IsRemove).AsNoTracking();
         }
+
+        // public IQueryable<T> GetAll()
+        // {
+        //     return _managementContext.Set<T>().Where(i => i.IsRemove == false).AsNoTracking();
+        // }
 
         /// <summary>
         ///  获取数据并排序
@@ -146,6 +146,10 @@ namespace CustomerManagement.DAL
         public IQueryable<T> GetAllByPageOrderAsync(int pageSize = 10, int pageIndex = 0, bool asc = true)
         {
             return GetAllOrderAsync(asc).Skip(pageSize * pageIndex).Take(pageSize);
+        }
+        public void Dispose()
+        {
+            _managementContext.Dispose();
         }
     }
 }
